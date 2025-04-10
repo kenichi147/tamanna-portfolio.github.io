@@ -1,18 +1,19 @@
 let userConfig = undefined
 try {
-  // try to import ESM first
+  // Try to import ESM first
   userConfig = await import('./v0-user-next.config.mjs')
 } catch (e) {
   try {
-    // fallback to CJS import
+    // Fallback to CJS import
     userConfig = await import("./v0-user-next.config");
   } catch (innerError) {
-    // ignore error
+    // Ignore error
   }
 }
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // 🔥 Required for static export!
   eslint: {
     ignoreDuringBuilds: true,
   },
